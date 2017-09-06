@@ -1,0 +1,4 @@
+#spring:
+#  factory:
+countOfStudents: 30
+countOfGroups: 4

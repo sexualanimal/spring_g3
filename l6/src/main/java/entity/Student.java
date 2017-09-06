@@ -1,3 +1,5 @@
+package entity;
+
 public class Student {
     private String name;
     private int averageScore;
@@ -35,7 +37,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "entity.Student{" +
                 "name='" + getName() + '\'' +
                 ", averageScore=" + getAverageScore() +
                 ", group=" + getGroup().getNumber() +

@@ -1,3 +1,9 @@
+import entity.Professional;
+import entity.Student;
+import factory.StudentCreateFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -5,22 +11,28 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        int studentsCount = 30;
-        int groupsCount = 3;
-        int professionalScoreLimit = 80;
-        int generalScoreLimit = 50;
-        int generalGroupNumber = 2;
-        int scoreGroupNumber = 1;
+        final int studentsCount = 30;
+        final int groupsCount = 3;
+        final int professionalScoreLimit = 80;
+        final int generalScoreLimit = 50;
+        final int generalGroupNumber = 2;
+        final int scoreGroupNumber = 1;
 
-        StudentCreateFactory factory = new StudentCreateFactory(studentsCount, groupsCount);
-        List<Student> students = factory.getStudents();
+        ApplicationContext ctx = new ClassPathXmlApplicationContext( "beans.xml");
+        StudentCreateFactory factory = ctx.getBean("factory", StudentCreateFactory.class);
+
+
+        List<Student> students = factory.getStudents(studentsCount, groupsCount);
         showStudentsFromList(students, "All students");
+
 
         List<Professional> professionals = getProfessionals(students, professionalScoreLimit);
         showStudentsFromList(professionals, "Professionals");
 
+
         List<Student> studentsFromGroup = getStudentsByGroup(students, generalGroupNumber);
         showStudentsFromList(studentsFromGroup, "Students by group");
+
 
         List<Student> studentsWithScoreByGroup = getStudentsWithScore(
                 getStudentsByGroup(students, scoreGroupNumber),

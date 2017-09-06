@@ -1,3 +1,5 @@
+package entity;
+
 public class Professional extends Student{
 
     public Professional(String name, int averageScore, Group group) {
@@ -6,7 +8,7 @@ public class Professional extends Student{
 
     @Override
     public String toString() {
-        return "Professional{" +
+        return "entity.Professional{" +
                 "name='" + getName() + '\'' +
                 ", averageScore=" + getAverageScore() +
                 ", group=" + getGroup().getNumber() +

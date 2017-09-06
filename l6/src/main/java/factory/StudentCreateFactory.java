@@ -1,3 +1,8 @@
+package factory;
+
+import entity.Group;
+import entity.Student;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,12 +12,13 @@ public class StudentCreateFactory {
     private Names[] names;
     private SecondNames[] secondNames;
 
-    public StudentCreateFactory(int studentCount, int groupsCount) {
+    public StudentCreateFactory() {
         this.students = new ArrayList<>();
-
         names = Names.values();
         secondNames = SecondNames.values();
+    }
 
+    public List<Student> getStudents(int studentCount, int groupsCount){
         Random random = new Random();
 
         for (int i = 0; i < studentCount; i++) {
@@ -26,9 +32,10 @@ public class StudentCreateFactory {
                     new Group(1 + random.nextInt(groupsCount))
             ));
         }
+        return students;
     }
 
-    enum Names {
+    private enum Names {
         Ivan,
         Petr,
         Vicror,
@@ -43,7 +50,7 @@ public class StudentCreateFactory {
         Alexandra
     }
 
-    enum SecondNames {
+    private enum SecondNames {
         Pertov,
         Vasiliev,
         Manchenco,
@@ -56,9 +63,5 @@ public class StudentCreateFactory {
         Zuev,
         Tsyba,
         Goleniev
-    }
-
-    public List<Student> getStudents() {
-        return students;
     }
 }
